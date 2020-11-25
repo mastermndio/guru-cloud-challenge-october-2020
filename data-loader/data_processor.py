@@ -42,13 +42,3 @@ def dateConverter(date):
 def pushToDynamo(finalData):
     for key, val in finalData.items():
         dynamo_helper.updateTable(key, val[0], val[1], val[2])
-
-def extract():
-    nytData = getUpdatedData('https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv')
-    recoveryData = getUpdatedData('https://raw.githubusercontent.com/datasets/covid-19/master/data/time-series-19-covid-combined.csv?opt_id=oeu1606175811275r0.2180143506041583')
-
-    result = parseData(nytData, recoveryData)
-    pushToDynamo(result)
-
-
-extract()
